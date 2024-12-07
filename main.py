@@ -3,7 +3,7 @@ def main():
     book = read(book_path)
     word_count = count_words(book)
     character_count = count_alphabets(book)
-    print(character_count)
+    print_report(book_path, word_count, character_count)
 
 
 def read(path):
@@ -21,6 +21,15 @@ def count_alphabets(string):
         if c.isalpha():
             character_count[c] = character_count.get(c, 0) + 1
     return character_count
+
+
+def print_report(book_path, word_count, character_count):
+    print(f"--- Begin report of {book_path} ---")
+    print(f"{word_count} words found in the document")
+    print()
+    for item in sorted(character_count.items(), key=lambda x: x[1], reverse=True):
+        print(f"The '{item[0]}' character was found {item[1]} times")
+    print(f"--- End report ---")
 
 
 if __name__ == '__main__':
